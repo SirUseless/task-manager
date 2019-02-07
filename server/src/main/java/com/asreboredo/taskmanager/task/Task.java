@@ -2,8 +2,13 @@ package com.asreboredo.taskmanager.task;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.asreboredo.taskmanager.user.User;
 
 /**
  * Task
@@ -19,6 +24,9 @@ public class Task {
     private String title;
     private String description;
     private Boolean done;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     public Task() {
         super();
@@ -83,6 +91,20 @@ public class Task {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    /**
+     * @return the owner
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     @Override

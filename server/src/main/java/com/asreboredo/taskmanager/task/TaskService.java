@@ -31,7 +31,10 @@ public class TaskService {
     }
 
     public void updateTask(Task task, Long id) {
-        this.taskRepository.save(task);
+        // Simple check for task id in request body. This prevents reaching the Database
+        // in that case
+        if (task.getId().equals(id))
+            this.taskRepository.save(task);
     }
 
     public void deleteTask(Task task) {
