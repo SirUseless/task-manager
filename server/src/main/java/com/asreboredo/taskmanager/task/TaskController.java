@@ -52,7 +52,6 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.PUT, value = API_STRING + "/{id}")
     public ResponseEntity<Task> updateTask(@RequestBody Task task, @PathVariable Long id) {
-
         try {
             this.taskService.updateTask(task, id);
             return ResponseEntity.status(HttpStatus.OK).body(this.taskService.getTask(task.getId()).get());

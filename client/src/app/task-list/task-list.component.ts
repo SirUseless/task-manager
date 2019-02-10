@@ -10,6 +10,7 @@ import { Task } from '../entities/Task';
 })
 export class TaskListComponent implements OnInit {
   protected _tasks: Task[];
+
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {

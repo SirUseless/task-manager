@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../entities/Task';
 import { TaskService } from './../services/task.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-task-add',
@@ -15,11 +16,13 @@ export class TaskAddComponent implements OnInit {
   ngOnInit() {}
 
   protected addTask() {
-    const task: Task = new Task();
-    task.done = false;
-    task.title = this.title;
-    this.title = ''; // clear add imput
+    if (this.title.length >= 4) {
+      const task: Task = new Task();
+      task.done = false;
+      task.title = this.title;
+      this.title = ''; // clear add imput
 
-    this.taskService.addTask(task);
+      this.taskService.addTask(task);
+    }
   }
 }

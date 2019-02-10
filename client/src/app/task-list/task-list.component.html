@@ -1,5 +1,18 @@
-<div *ngFor="let task of _tasks">
-  {{ task.id }}/{{ task.title }}/{{ task.done }}
-  <button (click)="deleteTask(task.id)">Delete</button>
-  <button (click)="swapTaskState(task)">Swap</button>
+<div>
+  <mat-list>
+    <mat-list-item
+      *ngFor="let task of _tasks"
+      [ngClass]="{ striked: task.done }"
+    >
+      {{ task.title }}
+      <button mat-icon-button (click)="deleteTask(task.id)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+      <mat-checkbox
+        class="example-margin"
+        [checked]="task.done"
+        (change)="swapTaskState(task)"
+      ></mat-checkbox>
+    </mat-list-item>
+  </mat-list>
 </div>

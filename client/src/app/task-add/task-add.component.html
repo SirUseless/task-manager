@@ -1,8 +1,18 @@
 <div>
-  <form>
-    <div>
-      <input [(ngModel)]="title" type="text" name="title" required />
-    </div>
-    <button type="submit" (click)="addTask()">Add Task</button>
-  </form>
+  <div>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input
+          maxlength="256"
+          matInput
+          [(ngModel)]="title"
+          name="title"
+          required
+        />
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="addTask()" type="submit">
+        Add Task
+      </button>
+    </form>
+  </div>
 </div>
