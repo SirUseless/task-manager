@@ -22,7 +22,6 @@ public class Task {
     private Long id;
     @Column(unique = true)
     private String title;
-    private String description;
     private Boolean done;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
@@ -32,11 +31,11 @@ public class Task {
         super();
     }
 
-    public Task(Long id, String title, String description) {
+    public Task(Long id, String title, Boolean done) {
         super();
         this.id = id;
         this.title = title;
-        this.description = description;
+        this.done = done;
     }
 
     /**
@@ -67,20 +66,6 @@ public class Task {
         this.title = title;
     }
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Boolean isDone() {
         return this.done;
     }
@@ -109,8 +94,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", description='" + getDescription()
-                + "'" + ", done='" + isDone() + "'" + "}";
+        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", done='" + isDone() + "'"
+                + ", owner='" + getOwner() + "'" + "}";
     }
 
 }
