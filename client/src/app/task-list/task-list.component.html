@@ -1,3 +1,5 @@
-<p>
-  task-list works!
-</p>
+<div *ngFor="let task of _tasks">
+  {{ task.id }}/{{ task.title }}/{{ task.done }}
+  <button (click)="deleteTask(task.id)">Delete</button>
+  <button (click)="swapTaskState(task)">Swap</button>
+</div>
