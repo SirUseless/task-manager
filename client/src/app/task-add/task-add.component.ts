@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Task } from '../entities/Task';
 import { TaskService } from './../services/task.service';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-task-add',
@@ -9,14 +9,16 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./task-add.component.scss']
 })
 export class TaskAddComponent implements OnInit {
-  protected title: string;
+  protected title = '';
+  protected unique = true;
+  taskFormControl = new FormControl('', [Validators.required]);
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {}
 
   protected addTask() {
-    if (this.title.length >= 4) {
+    if (this.title.length > 0 && this.unique) {
       const task: Task = new Task();
       task.done = false;
       task.title = this.title;
@@ -24,5 +26,16 @@ export class TaskAddComponent implements OnInit {
 
       this.taskService.addTask(task);
     }
+  }
+
+  protected validateTitle() {
+    this.unique = true;
+    this.taskService.tasks.forEach(taskList =>
+      taskList.forEach(task => {
+        if (task.title === this.title) {
+          this.unique = false;
+        }
+      })
+    );
   }
 }

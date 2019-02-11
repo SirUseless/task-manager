@@ -16,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatInputModule } from '@angular/material/input';
 import { TaskAddComponent } from './task-add/task-add.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { TaskListComponent } from './task-list/task-list.component';
     MatListModule,
     MatIconModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   exports: [MatToolbarModule],
   providers: [],

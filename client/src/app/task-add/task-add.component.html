@@ -1,18 +1,46 @@
-<div>
-  <div>
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input
-          maxlength="256"
-          matInput
-          [(ngModel)]="title"
-          name="title"
-          required
-        />
-      </mat-form-field>
-      <button mat-flat-button color="primary" (click)="addTask()" type="submit">
-        Add Task
-      </button>
-    </form>
-  </div>
+<div class="row input-row">
+  <mat-card class="fullwidth">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-10">
+          <form autocomplete="off">
+            <mat-form-field class="fullwidth">
+              <input
+                maxlength="256"
+                matInput
+                [(ngModel)]="title"
+                (input)="validateTitle()"
+                (keydown.enter)="addTask()"
+                name="title"
+                required
+              />
+              <mat-error *ngIf="!unique">
+                Esa tarea ya existe.
+              </mat-error>
+              <mat-error *ngIf="taskFormControl.hasError('required')">
+                Debes introducir <strong>algo</strong>
+              </mat-error>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="col-md-2">
+          <button
+            mat-flat-button
+            type="button"
+            color="primary"
+            (click)="addTask()"
+          >
+            AÑADIR
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div *ngIf="!unique">
+        <p class="accent">
+          La tarea <strong>{{ title }}</strong> ya existe.
+        </p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </div>

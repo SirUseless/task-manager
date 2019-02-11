@@ -1,4 +1,18 @@
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+$light-primary: mat-palette($mat-pink, 700);
+$light-accent: mat-palette($mat-orange, 700);
+$light-warn: mat-palette($mat-deep-orange, 600);
+
+$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+@include angular-material-theme($light-theme);
 
 * {
   padding: 0px;
@@ -6,7 +20,7 @@
 }
 
 body {
-  background: #20313b;
+  background: #eeeeee !important;
 }
 
 mat-sidenav-container,
