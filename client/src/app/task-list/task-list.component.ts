@@ -9,7 +9,7 @@ import { Task } from '../entities/Task';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  protected _tasks: Task[];
+  public _tasks: Task[];
 
   constructor(private taskService: TaskService) {}
 

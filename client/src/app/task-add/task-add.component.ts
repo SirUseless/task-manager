@@ -9,15 +9,15 @@ import { TaskService } from './../services/task.service';
   styleUrls: ['./task-add.component.scss']
 })
 export class TaskAddComponent implements OnInit {
-  protected title = '';
-  protected unique = true;
+  public title = '';
+  public unique = true;
   taskFormControl = new FormControl('', [Validators.required]);
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {}
 
-  protected addTask() {
+  public addTask() {
     if (this.title.length > 0 && this.unique) {
       const task: Task = new Task();
       task.done = false;
@@ -28,7 +28,7 @@ export class TaskAddComponent implements OnInit {
     }
   }
 
-  protected validateTitle() {
+  public validateTitle() {
     this.unique = true;
     this.taskService.tasks.forEach(taskList =>
       taskList.forEach(task => {
